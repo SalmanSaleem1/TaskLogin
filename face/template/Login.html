@@ -1,0 +1,30 @@
+{% extends 'Layout.html' %}
+{% block content %}
+<center>
+    <div style="width: 800px;background: coral; font-size: 30px">
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend>Login here</legend>
+                <div class="form-group" style="width: 500px">
+                    {{ form.email(class="form-control form-control-lg",placeholder = 'Email')}}
+                </div>
+                <div class="form-group" style="width: 500px">
+                    {{ form.password(class="form-control form-control-lg",placeholder = 'Password')}}
+                </div>
+                <div class="form-check" style="font-size: 15px;font-weight: lighter;">
+                    {{ form.remember(class="form-check-input")}}
+                    {{ form.remember.label(class="form-check-label")}}<br>
+                </div>
+            </fieldset>
+            <div class="form-group" style="font-size: 12px">
+                {{ form.submit(class="btn btn-outline-info")}}
+                <a href="{{ url_for('users.request_password')}}">Forgot password ?</a>
+            </div>
+        <br>
+        </form>
+    </div>
+</center>
+
+
+{% endblock content%}

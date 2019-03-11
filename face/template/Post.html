@@ -1,0 +1,46 @@
+{% extends 'Layout.html' %}
+{% block content %}
+    <article class="media content-section">
+        <img src="{{ url_for('static', filename='profile_pic/'+post.author.image_file)}}" class="rounded circle article-img">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="">{{ post.author.name }}</a>
+                <small class="text-muted">{{ post.date_pasted.strftime('%m-%d-%Y') }}</small>
+                <h2><a href="{{ url_for('posts.post',post_id=post.id)}}">{{ post.title }}</a></h2>
+                {% if post.author == current_user %}
+                <a class="btn btn-secondary btn-sm m-1" href="{{ url_for('posts.update_post',post_id=post.id)}}">Update</a>
+                <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModalCenter">
+  Delete
+                </button>
+                <!--<a class="btn btn-danger btn-sm m-1" href="{{ url_for('posts.delete_post',post_id=post.id)}}">Delete</a>-->
+                {% endif %}
+            </div>
+            <div>
+                <p class="article-content">{{ post.content }}</p>
+            </div>
+        </div>
+    </article>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModalCenter" tabindex="-1" role="dialog" aria-labelledby="deleteModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalCenterTitle">Delete Post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure want to delete post ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger"><a href="{{ url_for('posts.delete_post',post_id=post.id)}}">Delete</a></button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

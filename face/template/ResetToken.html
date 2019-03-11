@@ -1,0 +1,40 @@
+{% extends 'Layout.html' %}
+{% block content %}
+<div class="content-section">
+    <div class="media">
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="article-title">Resest your password</legend>
+                <div class="form-group" style="width: 500px;text-align: center">
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid",placeholder='Enter Email',style="text-align: center")}}
+                        <div class="invalid-field">
+                            {% for error in form.password.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg",placeholder='Enter Email',style="text-align: center")}}
+                    {% endif %}
+                </div>
+                <div class="form-group" style="width: 500px;text-align: center">
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control-lg is-invalid",placeholder='Enter Email',style="text-align: center")}}
+                        <div class="invalid-field">
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="form-control form-control-lg",placeholder='Enter Email',style="text-align: center")}}
+                    {% endif %}
+                </div>
+                <div class="form-group" style="width: 500px;text-align: center">
+                    {{ form.submit(class="btn btn-outline-info")}}
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+{% endblock content%}

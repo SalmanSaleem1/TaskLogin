@@ -1,0 +1,19 @@
+{% extends 'Layout.html' %}
+{% block content %}
+
+{% for post in posts %}
+<article class="media content-section">
+    <img src="{{ url_for('static', filename='profile_pic/'+post.author.image_file)}}" class="rounded circle article-img">
+    <div class="media-body">
+        <div class="article-metadata">
+
+            <small class="text-muted">{{ post.date_pasted.strftime('%m %d %y') }}</small>
+            <h2><a href="{{ url_for('posts.post',post_id=post.id)}}">{{ post.title }}</a></h2>
+        </div>
+        <div>
+        <p class="text-muted">{{ post.content }}</p>
+        </div>
+    </div>
+</article>
+{% endfor %}
+{% endblock content%}
